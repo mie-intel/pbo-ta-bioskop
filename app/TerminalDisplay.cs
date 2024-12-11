@@ -1,32 +1,38 @@
 using System.Text.RegularExpressions;
+using App.Pages;
 
 namespace PBO_GUI
 {
     public static class TerminalDisplay
     {
-        // berisi isi dari terminal utama
-        static string currentTerminal = "Hello there!";
+        static string[] routes = ["beranda", "view"];
 
-        // Menampilkan Terminal Utama
-        public static void DisplayWindow()
-        {
-            Console.Clear();
-            Console.WriteLine(currentTerminal!);
-        }
+        static string currentRoute = "initial";
+
+        static string[] film = ["Ipar adalah maut", "Dilan", "fufufafa"];
 
         // Menampilkan Command Line
         // Menerima Input dari command line
-        public static void DisplayCommand()
+        public static bool Display()
         {
+            if (currentRoute == "initial")
+                Beranda.Page();
+
+            // Dapetin command line
             Console.Write("Perintah $ ");
-            string inp = Console.ReadLine() ?? "";
-            int itr = 1;
-            string[] commands = Regex.Split(inp, @"\s+");
-            foreach (string command in commands)
-            {
-                Console.WriteLine(itr.ToString() + command);
-                itr += 1;
-            }
+            string inp = Console.ReadLine() ?? ""; // input perintah
+            string[] commands = Regex.Split(inp, @"\s+"); // split command, ubah jadi array of string
+
+            // cek current route
+            currentRoute = commands[0];
+            if (currentRoute == "view")
+                View.Page(commands[1]);
+            else
+                Beranda.Page();
+
+            if (commands[0] == "exit")
+                return false;
+            return true;
         }
     }
 }
