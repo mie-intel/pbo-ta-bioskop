@@ -4,14 +4,18 @@ namespace PBO_GUI
 {
     public static class TerminalDisplay
     {
+        // berisi isi dari terminal utama
         static string currentTerminal = "Hello there!";
 
+        // Menampilkan Terminal Utama
         public static void DisplayWindow()
         {
             Console.Clear();
             Console.WriteLine(currentTerminal!);
         }
 
+        // Menampilkan Command Line
+        // Menerima Input dari command line
         public static void DisplayCommand()
         {
             Console.Write("Perintah $ ");
