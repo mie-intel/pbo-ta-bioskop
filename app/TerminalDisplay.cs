@@ -25,13 +25,16 @@ namespace PBO_GUI
 
             // cek current route
             currentRoute = commands[0];
+
+            // keluar program
+            if (currentRoute == "exit")   
+                return false;
+            
             if (currentRoute == "view")
                 View.Page(commands[1]);
             else
                 Beranda.Page();
 
-            if (commands[0] == "exit")
-                return false;
             return true;
         }
     }

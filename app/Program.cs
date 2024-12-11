@@ -10,6 +10,7 @@ namespace app
             // 1. login dulu
             //      kalo gagal, return null
             //      kalo berhasil, lanjut
+            // kao gagal login / register -> return
 
             // program utama
             while (true)
@@ -18,6 +19,8 @@ namespace app
                 if (!lanjut)
                     break;
             }
+
+            Console.WriteLine("\nSampai Jumpa!");
         }
     }
 }
