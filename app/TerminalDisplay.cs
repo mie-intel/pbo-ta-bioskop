@@ -27,9 +27,9 @@ namespace PBO_GUI
             currentRoute = commands[0];
 
             // keluar program
-            if (currentRoute == "exit")   
+            if (currentRoute == "exit")
                 return false;
-            
+
             if (currentRoute == "view")
                 View.Page(commands[1]);
             else
