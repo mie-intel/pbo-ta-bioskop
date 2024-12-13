@@ -31,10 +31,7 @@ namespace PBO_GUI
             if (currentRoute == "exit")
                 return false;
 
-<<<<<<< HEAD
             // cek command
-=======
->>>>>>> 50fbfa204f0b17573ad1d69e24ae310497e242c0
             if (currentRoute == "view")
                 View.Page(commands[1]);
             else
