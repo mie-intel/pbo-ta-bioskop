@@ -1,4 +1,5 @@
-﻿using PBO_GUI;
+﻿using System.Runtime.CompilerServices;
+using PBO_GUI;
 
 namespace app
 {
@@ -7,6 +8,7 @@ namespace app
         // Program Utama
         static void Main(string[] args)
         {
+            // Inisialisasi database
             // 1. login dulu
             //      kalo gagal, return null
             //      kalo berhasil, lanjut

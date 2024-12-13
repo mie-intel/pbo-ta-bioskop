@@ -1,3 +1,4 @@
+using System.Data.Common;
 using System.Text.RegularExpressions;
 using App.Pages;
 
@@ -5,7 +6,7 @@ namespace PBO_GUI
 {
     public static class TerminalDisplay
     {
-        static string[] routes = ["beranda", "view"];
+        static string[] routes = ["beranda", "view", "buy", "topup", "addFilm", "deleteFilm"];
 
         static string currentRoute = "initial";
 
@@ -27,9 +28,10 @@ namespace PBO_GUI
             currentRoute = commands[0];
 
             // keluar program
-            if (currentRoute == "exit")   
+            if (currentRoute == "exit")
                 return false;
-            
+
+            // cek command
             if (currentRoute == "view")
                 View.Page(commands[1]);
             else
