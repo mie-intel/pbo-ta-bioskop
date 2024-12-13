@@ -10,13 +10,13 @@ namespace app
             // 1. login dulu
             //      kalo gagal, return null
             //      kalo berhasil, lanjut
-            // kao gagal login / register -> return
+            // kalo gagal login / register -> return
 
             // program utama
             while (true)
             {
-                bool lanjut = TerminalDisplay.Display();
-                if (!lanjut)
+                // kalo terminal display return false, langsung break
+                if (!TerminalDisplay.Display())
                     break;
             }
 

@@ -5,11 +5,11 @@ namespace PBO_GUI
 {
     public static class TerminalDisplay
     {
-        static string[] routes = ["beranda", "view"];
+        static string[] routes = {"beranda", "view"};
 
         static string currentRoute = "initial";
 
-        static string[] film = ["Ipar adalah maut", "Dilan", "fufufafa"];
+        static string[] film = { "Ipar adalah maut", "Dilan", "fufufafa" };
 
         // Menampilkan Command Line
         // Menerima Input dari command line
