@@ -1,4 +1,6 @@
-﻿namespace App.Model
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace App.Model
 {
     [Table("Films")]
     public class FilmModel

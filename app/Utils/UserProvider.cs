@@ -36,13 +36,12 @@ namespace App.Utils
             {
                 _username = username;
                 _password = password;
-                return "Login successful";
+                return "success";
             }
-            return "Invalid username or password";
-            
+            return "invalid";
         }
 
-        public static string Register(string username, string username)
+        public static string Register(string username, string password)
         {
             var dbContext = CreateDbContext();
             dbContext.Database.EnsureCreated();
@@ -58,7 +57,6 @@ namespace App.Utils
             dbContext.User.Add(newUser);
             dbContext.SaveChanges();
             return "success";
-            
         }
 
         public static string GetUsername()
@@ -68,7 +66,7 @@ namespace App.Utils
 
         public static string Verify(string password)
         {
-            return _password == password;
+            return _password == password ? "success" : "failed";
         }
 
         public static void LogOut()
