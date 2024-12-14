@@ -6,11 +6,11 @@ namespace App.Model
     public class FilmModel
     {
         public int Id { get; set; }
-        public string Nama { get; set; }
-        public string Tanggal { get; set; }
-        public int Rate { get; set; }
-        public int Harga { get; set; }
-        public string Seat { get; set; }
-        public string Deskripsi { get; set; }
+        public required string Nama { get; set; }
+        public required string Tanggal { get; set; }
+        public required int Rate { get; set; }
+        public required int Harga { get; set; }
+        public required string Seat { get; set; }
+        public required string Deskripsi { get; set; }
     }
 }

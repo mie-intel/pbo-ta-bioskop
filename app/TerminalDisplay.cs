@@ -34,20 +34,16 @@ namespace PBO_GUI
             // cek command
             if (currentRoute == "view")
                 View.Page(commands[1]);
-
             else if (currentRoute == "buy")
                 Buy.Page(commands[1]);
-
             else if (currentRoute == "topup")
                 TopUp.Page();
-
             else if (currentRoute == "addFilm")
                 addFilm.Page();
-
             else if (currentRoute == "deleteFilm")
                 deleteFilm.Page();
-
-            else Beranda.Page();
+            else
+                Beranda.Page();
 
             return true;
         }

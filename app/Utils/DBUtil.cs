@@ -1,5 +1,5 @@
-﻿using System.IO;
-using System;
+﻿using System;
+using System.IO;
 using Fare;
 
 namespace App.Utils
@@ -11,7 +11,8 @@ namespace App.Utils
             string appPath = Environment.CurrentDirectory;
             string dbPath = Path.Combine(appPath, "db", dbMdf);
             Console.WriteLine("DbPath " + dbPath);
-            string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;Connect Timeout=30;";
+            string connectionString =
+                $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;Connect Timeout=30;";
             return connectionString;
         }
 
@@ -20,11 +21,6 @@ namespace App.Utils
             string appPath = Environment.CurrentDirectory;
             string dbPath = Path.Combine(appPath, "db", dbDb);
             Console.WriteLine(dbPath);
-            // Delete the existing Users.db file if it's corrupted
-            // if (File.Exists(dbPath))
-            // {
-               //  File.Delete(dbPath); // Deleting corrupted file
-            // }
             string connectionString = $@"Data Source={dbPath}";
             return connectionString;
         }

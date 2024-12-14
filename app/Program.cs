@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
-using Microsoft.EntityFrameworkCore;
 using App.Utils;
+using Microsoft.EntityFrameworkCore;
 using PBO_GUI;
 
 namespace App
@@ -10,7 +10,6 @@ namespace App
         // Program Utama
         static void Main(string[] args)
         {
-
             // while (true)
             // {
             //     if (!TerminalDisplay.Display())

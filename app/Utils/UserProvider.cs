@@ -10,8 +10,8 @@ namespace App.Utils
 {
     internal class UserProvider
     {
-        private static string _username = null;
-        private static string _password = null;
+        private static string? _username = null;
+        private static string? _password = null;
 
         // Creates a database context
         private static UserDbContext CreateDbContext()
@@ -28,12 +28,13 @@ namespace App.Utils
             return DBUtil.GetRandomString(@"U[0-9A-Za-z]{6}");
         }
 
-
         public static string LogIn(string username, string password)
         {
             var dbContext = CreateDbContext();
             dbContext.Database.EnsureCreated();
-            var user = dbContext.User.SingleOrDefault(u => u.Username == username && u.Password == password);
+            var user = dbContext.User.SingleOrDefault(u =>
+                u.Username == username && u.Password == password
+            );
             if (user != null)
             {
                 _username = username;
@@ -55,13 +56,18 @@ namespace App.Utils
             }
 
             // Add the new user
-            var newUser = new UserModel { Id = GetUserId(), Username = username, Password = password };
+            var newUser = new UserModel
+            {
+                Id = GetUserId(),
+                Username = username,
+                Password = password,
+            };
             dbContext.User.Add(newUser);
             dbContext.SaveChanges();
             return "success";
         }
 
-        public static string GetUsername()
+        public static string? GetUsername()
         {
             return _username;
         }
@@ -80,7 +86,12 @@ namespace App.Utils
 
     public class UserDbContext : DbContext
     {
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options) { }
+        public UserDbContext(DbContextOptions<UserDbContext> options)
+            : base(options)
+        {
+            User = Set<UserModel>();
+        }
+
         public DbSet<UserModel> User { get; set; }
     }
 }
