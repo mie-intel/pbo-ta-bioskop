@@ -17,7 +17,9 @@ namespace App.Utils
         private static UserDbContext CreateDbContext()
         {
             var optionsBuilder = new DbContextOptionsBuilder<UserDbContext>();
-            optionsBuilder.UseSqlServer(DBUtil.GetConnectionString("Users.Mdf"));
+            // optionsBuilder.UseSqlServer(DBUtil.GetConnectionString("Users.Mdf"));
+            optionsBuilder.UseSqlite(DBUtil.GetConnectionSQLite("Users.db"));
+
             return new UserDbContext(optionsBuilder.Options);
         }
 

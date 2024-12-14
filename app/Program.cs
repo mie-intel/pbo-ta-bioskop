@@ -16,7 +16,7 @@ namespace App
             //     if (!TerminalDisplay.Display())
             //         break;
             // }
-            string tes = UserProvider.Register("polikarpus", "mie-intel");
+            string tes = UserProvider.Register("polikarpu123", "mie-mie");
             Console.WriteLine(tes);
             Console.WriteLine("\nSampai Jumpa!");
         }
