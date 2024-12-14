@@ -6,7 +6,7 @@ namespace PBO_GUI
 {
     public static class TerminalDisplay
     {
-        static string[] routes = ["beranda", "view", "buy", "topup", "addFilm", "deleteFilm"];
+        static string[] routes = { "beranda", "view", "buy", "topup", "addFilm", "deleteFilm" };
 
         static string currentRoute = "initial";
 
