@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PBO_GUI;
 
-namespace app
+namespace App
 {
     internal class Program
     {
