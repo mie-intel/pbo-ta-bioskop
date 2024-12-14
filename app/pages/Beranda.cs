@@ -22,7 +22,7 @@ namespace App.Pages
             {
                 Console.WriteLine($"{film.No}\t{film.ID}\t{film.Tanggal}\t{film.JudulFilm}");
             }
-            Console.WriteLine("\nKetik Id Film <idFilm> untuk melihat detail Film.");
+            Console.WriteLine("\nKetik 'view <idFilm>' melihat detail Film");
         }
     }
 }

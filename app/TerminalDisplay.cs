@@ -37,6 +37,18 @@ namespace PBO_GUI
             else
                 Beranda.Page();
 
+            if (currentRoute == "buy")
+                Buy.Page(commands[1]);
+
+            if (currentRoute == "topup")
+                TopUp.Page();
+
+            if (currentRoute == "addFilm")
+                addFilm.Page();
+
+            if (currentRoute == "deleteFilm")
+                deleteFilm.Page();
+
             return true;
         }
     }
