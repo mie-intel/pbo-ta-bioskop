@@ -6,9 +6,19 @@ namespace App.Pages
         {
             Console.Clear();
             Console.WriteLine("Selamat datang di halaman penghapusan film!\n");
-            Console.WriteLine("Apakah anda yakin untuk menghapus film ini? (y/n)");
-            Console.WriteLine("Masukkan password: <password>");
-            Console.WriteLine("[MESSAGE]: Sukses menghapus film. Gagal menghapus film");
+            Console.Write("Apakah anda yakin untuk menghapus film ini? (y/n): ");
+            string inpConfirm = Console.ReadLine() ?? "";
+            if (inpConfirm == "y")
+            {
+                Console.Write("Masukkan password: ");
+                string inpPass = Console.ReadLine() ?? "";
+                if (inpPass == "Konfirm") //check pass sama ga sama di db
+                    Console.WriteLine("Sukses menghapus film");
+                else
+                    Console.WriteLine("Gagal menghapus film");
+            }
+            else
+                return;
         }
     }
 }
