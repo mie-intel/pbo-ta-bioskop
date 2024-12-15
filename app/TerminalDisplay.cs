@@ -13,7 +13,7 @@ namespace App.Terminal
 
         static string currentRoute = "initial";
 
-        static string message = "";
+        static string errMessage = "";
 
         // Menampilkan Command Line
         // Menerima Input dari command line
@@ -22,12 +22,11 @@ namespace App.Terminal
             if (currentRoute == "initial")
                 Beranda.Page();
 
-            if (message != "")
-                Console.WriteLine(message);
+            if (errMessage != "")
+                Console.WriteLine(errMessage);
 
             // Dapetin command line
-            Console.Write("Perintah $ ");
-            string inp = Console.ReadLine() ?? ""; // input perintah
+            string inp = IOUtil.GetLine("Perintah $ ");
             List<string> commands = Regex.Split(inp, @"\s+").ToList(); // split command, ubah jadi array of string
 
             // cek current route
@@ -45,13 +44,16 @@ namespace App.Terminal
             else if (currentRoute == "buy")
                 Buy.Page(commands);
             else if (currentRoute == "topup")
-                TopUp.Page();
+                errMessage = TopUp.Page();
             else if (currentRoute == "addFilm")
                 addFilm.Page();
             else if (currentRoute == "deleteFilm")
                 deleteFilm.Page();
             else
+            {
                 currentRoute = "initial";
+                errMessage = $"{currentRoute} bukan perintah yang valid!";
+            }
 
             return true;
         }
@@ -61,8 +63,7 @@ namespace App.Terminal
             Console.Clear();
             Console.WriteLine("\n\n");
             Console.WriteLine("Masuk (L) / Daftar Akun Baru (R) ?");
-            Console.Write("Perintah $ ");
-            string inp = Console.ReadLine()?.Trim() ?? "";
+            string inp = IOUtil.GetLine("Perintah $ ");
 
             // defines path
             if (inp.Equals("R", StringComparison.OrdinalIgnoreCase))

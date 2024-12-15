@@ -2,7 +2,7 @@ namespace App.Pages
 {
     internal class TopUp
     {
-        public static void Page()
+        public static string Page()
         {
             int saldo = 2000;
             Console.Clear();
@@ -21,11 +21,12 @@ namespace App.Pages
                 {
                     Buy.Page([]);
                 }
+                return "Berhasil melakukan top up!";
             }
             else
             {
                 Console.WriteLine("Password salah");
-                return;
+                return "Gagal melakukan Top Up";
             }
         }
     }

@@ -1,25 +1,39 @@
+using System;
+using App.Utils;
+
 namespace App.Pages
 {
     internal class addFilm
     {
-        public static void Page()
+        public static string Page()
         {
             Console.Clear();
-            Console.WriteLine("Selamat datang di halaman penambahan film!\n");
-            Console.Write("Judul: ");
-            string inpJudul = Console.ReadLine() ?? "";
-            Console.Write("Tanggal: ");
-            string inpTanggal = Console.ReadLine() ?? "";
-            Console.Write("Rate: ");
-            string inpRate = Console.ReadLine() ?? "";
-            Console.Write("Deskripsi: ");
-            string inpDesk = Console.ReadLine() ?? "";
-            Console.Write("Massukan password: ");
-            string inpPass = Console.ReadLine() ?? "";
-            if (inpPass == "Konfirm") //check pass sama ga sama di db
-                Console.WriteLine("Sukses menambahkan film");
+            Console.WriteLine("Tambahkan film baru!\n");
+            string nama = IOUtil.GetLine($" {"Judul", 10}: ");
+            string tanggal = IOUtil.GetLine($" {"Tanggal", 10}: ");
+            int rate = IOUtil.GetInt($" {"Rating", 10}: ");
+            int harga = IOUtil.GetInt($" {"Harga", 10}: ");
+            int seat = IOUtil.GetInt($" {"Kursi", 10}: ");
+            string deskripsi = IOUtil.GetLine($" {"Deskripsi", 10}: ");
+            Console.WriteLine("");
+            string password = IOUtil.GetLine("Masukkan password untuk konfirmasi: ");
+            if (
+                nama == ""
+                || tanggal == ""
+                || rate == -1
+                || harga == -1
+                || seat == -1
+                || deskripsi == ""
+            )
+                return "Gagal menambahkan film. Data tidak boleh kosong!";
+
+            if (UserProvider.VerifyPassword(password).Equals("success")) //check pass sama ga sama di db
+            {
+                FilmProvider.AddFilm(nama, tanggal, rate, harga, seat, deskripsi);
+                return "Berhasil menambahkan film";
+            }
             else
-                Console.WriteLine("Gagal menambahkan film");
+                return "Gagal menambahkan film. Password salah";
         }
     }
 }
