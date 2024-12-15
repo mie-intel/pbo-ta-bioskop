@@ -1,9 +1,11 @@
+using System;
 using System.Data.Common;
 using System.Text.RegularExpressions;
 using App;
 using App.Pages;
+using App.Utils;
 
-namespace PBO_GUI
+namespace App.Terminal
 {
     public static class TerminalDisplay
     {
@@ -11,23 +13,22 @@ namespace PBO_GUI
 
         static string currentRoute = "initial";
 
-        static string[] film = { "Ipar adalah maut", "Dilan", "fufufafa" };
+        static string message = "";
 
         // Menampilkan Command Line
         // Menerima Input dari command line
         public static bool Display()
         {
             if (currentRoute == "initial")
-            {
-                Console.Clear();
-                Console.WriteLine("Mau Login? (L) / Mau Register? (R)");
-            }
-            Console.WriteLine("Ketik 'exit' untuk keluar.\n");
+                Beranda.Page();
+
+            if (message != "")
+                Console.WriteLine(message);
 
             // Dapetin command line
             Console.Write("Perintah $ ");
             string inp = Console.ReadLine() ?? ""; // input perintah
-            string[] commands = Regex.Split(inp, @"\s+"); // split command, ubah jadi array of string
+            List<string> commands = Regex.Split(inp, @"\s+").ToList(); // split command, ubah jadi array of string
 
             // cek current route
             currentRoute = commands[0];
@@ -36,26 +37,13 @@ namespace PBO_GUI
             if (currentRoute == "exit")
                 return false;
 
-            //Login route
-            if (currentRoute == "L")
-            {
-                Program.Login();
-            }
-            // Register route
-            if (currentRoute == "R")
-            {
-                Program.Register();
-            }
-
             // cek command
             if (currentRoute == "view")
             {
-                View.Page(commands[1]);
+                View.Page(commands);
             }
             else if (currentRoute == "buy")
-            {
-                Buy.Page(commands[1]);
-            }
+                Buy.Page(commands);
             else if (currentRoute == "topup")
                 TopUp.Page();
             else if (currentRoute == "addFilm")
@@ -63,9 +51,29 @@ namespace PBO_GUI
             else if (currentRoute == "deleteFilm")
                 deleteFilm.Page();
             else
-                Beranda.Page();
+                currentRoute = "initial";
 
             return true;
+        }
+
+        public static bool HandleAuth()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\n");
+            Console.WriteLine("Masuk (L) / Daftar Akun Baru (R) ?");
+            Console.Write("Perintah $ ");
+            string inp = Console.ReadLine()?.Trim() ?? "";
+
+            // defines path
+            if (inp.Equals("R", StringComparison.OrdinalIgnoreCase))
+                return AuthProvider.HandleRegister();
+            else if (inp.Equals("L", StringComparison.OrdinalIgnoreCase))
+                return AuthProvider.HandleLogin();
+            else
+            {
+                Console.WriteLine("\nMasukan tidak valid!. Gagal masuk!");
+                return false;
+            }
         }
     }
 }

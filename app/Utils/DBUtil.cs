@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.Globalization;
 using Fare;
 
 namespace App.Utils
@@ -21,7 +20,7 @@ namespace App.Utils
         {
             string appPath = Environment.CurrentDirectory;
             string dbPath = Path.Combine(appPath, "db", dbDb);
-            Console.WriteLine("Connect db: " + dbPath);
+            // Console.WriteLine("Connect db: " + dbPath);
             string connectionString = $@"Data Source={dbPath}";
             return connectionString;
         }
@@ -32,6 +31,16 @@ namespace App.Utils
             var xeger = new Xeger(regexPattern, new Random());
             string randomString = xeger.Generate();
             return randomString;
+        }
+
+        // Get Custom format for currency
+        public static NumberFormatInfo getCustomCurrency(string culture)
+        {
+            CultureInfo idCulture = new CultureInfo(culture);
+            NumberFormatInfo customFormat = (NumberFormatInfo)idCulture.NumberFormat.Clone();
+            customFormat.CurrencyPositivePattern = 2; // Add a space after the currency symbol
+            customFormat.CurrencySymbol = "Rp ";
+            return customFormat;
         }
     }
 }

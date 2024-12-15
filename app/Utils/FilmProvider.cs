@@ -1,5 +1,6 @@
 using App.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
 
 namespace App.Utils
 {
@@ -16,7 +17,7 @@ namespace App.Utils
         // Get Film ID
         private static string GetFilmId()
         {
-            return DBUtil.GetRandomString(@"F[0-9A-Za-z]{6}");
+            return DBUtil.GetRandomString(@"F[0-9A-Za-z]{4}");
         }
 
         // Get Seat Code in the form of ,,,,
@@ -57,6 +58,15 @@ namespace App.Utils
                 SeatList.Add((code, status));
             }
             return SeatList;
+        }
+
+        // Menegeluarkan  list semua film yang tersedia
+        public static List<FilmModel> GetAvailableFilm()
+        {
+            var dbContext = CreateDbContext();
+            dbContext.Database.EnsureCreated();
+            var result = dbContext.Film.ToList() ?? []; // Ubah ke bentuk list
+            return result;
         }
 
         // Function to add new film

@@ -1,10 +1,10 @@
-using PBO_GUI;
+using App.Terminal;
 
 namespace App.Pages
 {
     internal class Buy
     {
-        public static void Page(string id)
+        public static void Page(List<string> commands)
         {
             var kursiTersedia = new List<(string No, string Status)>
             {
@@ -18,7 +18,7 @@ namespace App.Pages
             int saldo = 10000;
 
             Console.Clear();
-            Console.WriteLine("Selamat datang di halaman pembelian tiket Film dengan id " + id);
+            Console.WriteLine("Selamat datang di halaman pembelian tiket Film dengan id ");
             Console.WriteLine("\nBeli Tiket Film <Judul Film>");
             Console.WriteLine("Harga Film\t: <harga Film>");
             Console.WriteLine("Saldo\t\t: <Jumlah saldo>");

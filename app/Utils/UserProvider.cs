@@ -70,7 +70,7 @@ namespace App.Utils
         // Get User ID
         private static string GetUserId()
         {
-            return DBUtil.GetRandomString(@"U[0-9A-Za-z]{6}");
+            return DBUtil.GetRandomString(@"U[0-9A-Za-z]{4}");
         }
 
         // Login to the current existing account
@@ -99,9 +99,7 @@ namespace App.Utils
 
             // Check if the user already exists
             if (dbContext.User.Any(u => u.Username == username))
-            {
                 return "user-exist";
-            }
 
             // Add the new user
             var newUser = new UserModel
@@ -118,7 +116,7 @@ namespace App.Utils
         }
 
         // Verify password
-        public static string Verify(string password)
+        public static string VerifyPassword(string password)
         {
             return _password == password ? "success" : "failed";
         }

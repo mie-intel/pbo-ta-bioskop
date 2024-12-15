@@ -2,10 +2,10 @@ namespace App.Pages
 {
     internal class View
     {
-        public static void Page(string id)
+        public static void Page(List<string> commands)
         {
             Console.Clear();
-            Console.WriteLine("Sedang melihat id " + id);
+            Console.WriteLine("Sedang melihat id ");
             Console.WriteLine("++++++++++Detail Film+++++++++");
             Console.WriteLine("Id\t: <id_film>");
             Console.WriteLine("Nama\t: <judulFilm>");

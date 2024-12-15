@@ -1,27 +1,29 @@
+using App.Model;
+using App.Utils;
+
 namespace App.Pages
 {
     internal class Beranda
     {
         public static void Page()
         {
-            var filmsAvailable = new List<(int No, string ID, string Tanggal, string JudulFilm)>
-            {
-                (1, "F1234", "Sen, 15 Des 2024", "Mengejar Layang - Layang"),
-                (2, "F1235", "Sen, 15 Des 2024", "Ipar adalah Maut - Mantap"),
-            };
-            string[] username = ["Berau", "Jogja"];
-            int saldo = 10000000;
+            List<FilmModel> filmList = FilmProvider.GetAvailableFilm();
+            string balance = UserProvider
+                .GetBalance()
+                .ToString("C", DBUtil.getCustomCurrency("id-ID"));
+            string? username = UserProvider.GetUsername();
 
             Console.Clear();
             Console.WriteLine("Selamat datang di aplikasi kami!\n");
-            Console.WriteLine($"Hello {username[1]}!");
-            Console.WriteLine($"Saldo Tersedia: Rp {saldo}\n");
+            Console.WriteLine($"Halo {username}!");
+            Console.WriteLine($"Saldo Tersedia: {balance}\n");
             Console.WriteLine("Film Tersedia");
-            Console.WriteLine("No.\tid\tTanggal\t\t\tJudul Film");
-            foreach (var film in filmsAvailable)
-            {
-                Console.WriteLine($"{film.No}\t{film.ID}\t{film.Tanggal}\t{film.JudulFilm}");
-            }
+            Console.WriteLine($" {"No", -5}{"idFilm", -10}{"Tanggal", -14}Judul");
+
+            int it = 0;
+            foreach (var film in filmList)
+                Console.WriteLine($" {++it, -5}{film.Id, -10}{film.Tanggal, -14}{film.Nama}");
+
             Console.WriteLine("\nKetik 'view <idFilm>' melihat detail Film");
         }
     }

@@ -19,7 +19,7 @@ namespace App.Pages
                 string inpBuy = Console.ReadLine() ?? ""; // tunggu input user
                 if (inpBuy == "buy")
                 {
-                    Buy.Page("F...");
+                    Buy.Page([]);
                 }
             }
             else
