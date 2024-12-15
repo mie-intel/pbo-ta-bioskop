@@ -8,5 +8,8 @@ namespace App.Model
         public required string Id { get; set; }
         public required string Username { get; set; }
         public required string Password { get; set; }
+
+        public required string Status { get; set; }
+        public required int Balance { get; set; }
     }
 }
