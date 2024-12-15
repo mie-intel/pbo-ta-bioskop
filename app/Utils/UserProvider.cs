@@ -5,11 +5,9 @@ namespace App.Utils
 {
     internal class UserProvider
     {
-        private static string? _username = null;
-        private static string? _password = null;
-
-        private static string? _status = null;
-
+        private static string? _username = null,
+            _password = null,
+            _status = null;
         private static int _balance = 0;
 
         // Creates a database context
