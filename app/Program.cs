@@ -30,5 +30,62 @@ namespace App
             }
             Console.WriteLine("\nSampai Jumpa!");
         }
+
+        public static void Login()
+        {
+            Console.Clear();
+            Console.WriteLine("Selamat datang di halaman Login!\n");
+            Console.WriteLine("Silahkan masukkan Username dan Password anda.");
+            Console.Write("Username: ");
+            string username = Console.ReadLine()?.Trim() ?? "";
+            Console.Write("Password: ");
+            string password = Console.ReadLine()?.Trim() ?? "";
+
+            // pake UserProvider.Login
+            string loginResult = UserProvider.LogIn(username, password);
+            if (loginResult == "success")
+            {
+                Console.WriteLine("Login berhasil!");
+                Console.WriteLine($"Selamat datang, {UserProvider.GetUsername()}!");
+            }
+            else
+            {
+                Console.WriteLine("Login gagal!");
+            }
+        }
+
+        public static void Register()
+        {
+            Console.Clear();
+            Console.WriteLine("Selamat datang di halaman Registrasi!\n");
+            // Ambil input username dan password dari pengguna
+            Console.Write("Username: ");
+            string username = Console.ReadLine()?.Trim() ?? ""; // Trim untuk menghapus spasi tambahan
+            Console.Write("Password: ");
+            string password = Console.ReadLine()?.Trim() ?? "";
+
+            // Validasi input
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                Console.WriteLine("Username dan password tidak boleh kosong!");
+                return;
+            }
+
+            // Panggil fungsi UserProvider.Register
+            string registerResult = UserProvider.Register(username, password);
+
+            if (registerResult == "success")
+            {
+                Console.WriteLine("Registrasi berhasil! Anda dapat login sekarang.");
+            }
+            else if (registerResult == "user-exist")
+            {
+                Console.WriteLine("Username sudah terdaftar! Silakan gunakan username lain.");
+            }
+            else
+            {
+                Console.WriteLine("Terjadi kesalahan saat registrasi. Silakan coba lagi.");
+            }
+        }
     }
 }

@@ -1,3 +1,5 @@
+using PBO_GUI;
+
 namespace App.Pages
 {
     internal class Buy
@@ -42,16 +44,7 @@ namespace App.Pages
             else if (saldo <= hargaFilm)
             {
                 Console.WriteLine("\nSaldo tidak cukup, silahkan Top-Up terlebih dahulu.");
-                Console.Write("Apakah anda ingin Top-Up? (y/n)");
-                string inpTopUp = Console.ReadLine() ?? "";
-                if (inpTopUp == "y")
-                {
-                    TopUp.Page();
-                }
-                else
-                {
-                    Beranda.Page();
-                }
+                Console.Write("Apakah anda ingin Top-Up? (y/n)\n");
             }
             else
             {

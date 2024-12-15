@@ -1,5 +1,6 @@
 using System.Data.Common;
 using System.Text.RegularExpressions;
+using App;
 using App.Pages;
 
 namespace PBO_GUI
@@ -17,7 +18,11 @@ namespace PBO_GUI
         public static bool Display()
         {
             if (currentRoute == "initial")
-                Beranda.Page();
+            {
+                Console.Clear();
+                Console.WriteLine("Mau Login? (L) / Mau Register? (R)");
+            }
+            Console.WriteLine("Ketik 'exit' untuk keluar.\n");
 
             // Dapetin command line
             Console.Write("Perintah $ ");
@@ -31,11 +36,26 @@ namespace PBO_GUI
             if (currentRoute == "exit")
                 return false;
 
+            //Login route
+            if (currentRoute == "L")
+            {
+                Program.Login();
+            }
+            // Register route
+            if (currentRoute == "R")
+            {
+                Program.Register();
+            }
+
             // cek command
             if (currentRoute == "view")
+            {
                 View.Page(commands[1]);
+            }
             else if (currentRoute == "buy")
+            {
                 Buy.Page(commands[1]);
+            }
             else if (currentRoute == "topup")
                 TopUp.Page();
             else if (currentRoute == "addFilm")
