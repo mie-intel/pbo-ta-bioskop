@@ -28,6 +28,37 @@ namespace App.Utils
             return result;
         }
 
+        // Book Film
+        public static string BookFilm(string filmId, string seat)
+        {
+            return "NULL";
+        }
+
+        // Parsing Seat Code from Database
+        public static List<(string, string)>? ParseSeat(string filmId)
+        {
+            // The format will be A1, A2, A3, ...
+            var dbContext = CreateDbContext();
+            dbContext.Database.EnsureCreated();
+            var selectedFilm = dbContext.Film.FirstOrDefault(u => u.Id == filmId);
+
+            // Kalo kosong, gagal
+            if (selectedFilm == null)
+                return null;
+
+            string[] SeatDbList = selectedFilm.Seat.Split(',');
+            List<(string seatCode, string userCode)> SeatList =
+                new List<(string seatCode, string userCode)>();
+
+            for (int i = 0; i < SeatDbList.Length; i += 1)
+            {
+                string code = "A" + (i + 1).ToString("D2");
+                string status = SeatDbList[i] == "" ? "." : "BOOKED";
+                SeatList.Add((code, status));
+            }
+            return SeatList;
+        }
+
         // Function to add new film
         // Admin only
         public static string AddFilm(
@@ -40,17 +71,16 @@ namespace App.Utils
         )
         {
             // Admin only
-            if (UserProvider.GetStatus() != "admin")
-                return "not-allowed";
+            // if (UserProvider.GetStatus() != "admin")
+            //     return "not-allowed";
 
             var dbContext = CreateDbContext();
             dbContext.Database.EnsureCreated();
 
             // Check if the film already exist
             if (dbContext.Film.Any(u => u.Nama == nama && u.Tanggal == tanggal))
-            {
                 return "film-exist";
-            }
+
             // Add new film
             var newFilm = new FilmModel
             {
@@ -75,6 +105,8 @@ namespace App.Utils
                 return "not-allowed";
 
             var dbContext = CreateDbContext();
+            dbContext.Database.EnsureCreated();
+
             var selectedFilm = dbContext.Film.FirstOrDefault(u => u.Id == filmId);
 
             // remove film if it exist

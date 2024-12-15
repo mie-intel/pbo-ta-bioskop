@@ -21,6 +21,7 @@ namespace App.Utils
         {
             string appPath = Environment.CurrentDirectory;
             string dbPath = Path.Combine(appPath, "db", dbDb);
+            Console.WriteLine("Connect db: " + dbPath);
             string connectionString = $@"Data Source={dbPath}";
             return connectionString;
         }
