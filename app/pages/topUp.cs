@@ -1,33 +1,28 @@
+using App.Utils;
+
 namespace App.Pages
 {
     internal class TopUp
     {
-        public static string Page()
+        public static string Page(List<string> commands)
         {
-            int saldo = 2000;
             Console.Clear();
-            Console.WriteLine("Selamat datang di halaman top-up!\n");
-            Console.Write("Ketik nominal top-up: ");
-            int topup = int.Parse(Console.ReadLine() ?? ""); // Baca input topup
-            Console.Write("Masukkan password: ");
-            string inpPass = Console.ReadLine() ?? "";
-            if (inpPass == "Konfirm") // cek juga apakah password sama kek yang ada di database
+            if (commands.Count == 1)
+                return "\'topup\' memerlukan 1 parameter <nominalUang>";
+            else if (commands.Count != 2)
+                return "\'topup\' hanya bisa menerima 1 parameter";
+            else if (!int.TryParse(commands[1], out int uang))
+                return "Parameter \'topup\' hanya dapat berupa bilangan bulat!";
+
+            string password = IOUtil.GetLine("Masukkan password untuk konfirmasi: ");
+            if (UserProvider.VerifyPassword(password).Equals("success")) //check pass sama ga sama di db
             {
-                saldo += topup;
-                Console.WriteLine($"\nBerhasil melakukan top-up.\nSaldo anda saat ini: {saldo}");
-                Console.WriteLine("\nKetik 'buy' untuk melanjutkan pembelian tiket.");
-                string inpBuy = Console.ReadLine() ?? ""; // tunggu input user
-                if (inpBuy == "buy")
-                {
-                    Buy.Page([]);
-                }
+                int uang = int.Parse(commands[1]);
+                UserProvider.TopUp(uang);
                 return "Berhasil melakukan top up!";
             }
             else
-            {
-                Console.WriteLine("Password salah");
-                return "Gagal melakukan Top Up";
-            }
+                return "Gagal melakukan top up! Password salah";
         }
     }
 }
