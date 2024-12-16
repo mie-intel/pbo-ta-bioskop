@@ -30,8 +30,8 @@ namespace App.Pages
             string penjelasan
         )> adminCommands = new List<(string, string?, string?, string)>
         {
-            ("addFilm", null, null, "Menambahkan film baru"),
-            ("delFilm", "<idFilm>", "(str)", "Menghapus film dengan id <idFilm>"),
+            ("addfilm", null, null, "Menambahkan film baru"),
+            ("delfilm", "<idFilm>", "(str)", "Menghapus film dengan id <idFilm>"),
         };
 
         public static string Page()

@@ -21,7 +21,7 @@ namespace App.Pages
                 return "Berhasil melakukan top up!";
             }
             else
-                return "Gagal melakukan top up! Password salah";
+                return "Password salah! Gagal melakukan top up!";
         }
     }
 }

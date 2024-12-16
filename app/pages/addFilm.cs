@@ -33,7 +33,7 @@ namespace App.Pages
                 return "Berhasil menambahkan film";
             }
             else
-                return "Gagal menambahkan film! Password salah";
+                return "Password salah! Gagal menambahkan film!";
         }
     }
 }

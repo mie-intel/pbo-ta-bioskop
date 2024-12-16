@@ -119,8 +119,8 @@ namespace App.Utils
         public static string DeleteFilm(string filmId)
         {
             // Admin only
-            if (UserProvider.GetStatus() != "admin")
-                return "not-allowed";
+            // if (UserProvider.GetStatus() != "admin")
+            //     return "not-allowed";
 
             var dbContext = CreateDbContext();
             dbContext.Database.EnsureCreated();
@@ -129,7 +129,10 @@ namespace App.Utils
 
             // remove film if it exist
             if (selectedFilm != null)
+            {
                 dbContext.Film.Remove(selectedFilm);
+                dbContext.SaveChanges();
+            }
             else
                 return "not-found";
             return "success";

@@ -9,9 +9,9 @@ namespace App.Terminal
 {
     public static class TerminalDisplay
     {
-        static string[] routes = { "beranda", "view", "buy", "topup", "addFilm", "deleteFilm" };
+        static string[] routes = { "beranda", "view", "buy", "topup", "addfilm", "delfilm" };
 
-        static string currentRoute = "initial";
+        static string currentRoute = "beranda";
 
         static string errMessage = "";
 
@@ -19,7 +19,7 @@ namespace App.Terminal
         // Menerima Input dari command line
         public static bool Display()
         {
-            if (currentRoute == "initial")
+            if (currentRoute == "beranda")
                 Beranda.Page();
 
             if (errMessage != "")
@@ -37,24 +37,27 @@ namespace App.Terminal
                 return false;
 
             // cek command
-            if (currentRoute == "addFilm")
+            if (currentRoute == "addfilm")
             {
                 AddFilm.Page();
-                currentRoute = "initial";
+                currentRoute = "beranda";
             }
             else if (currentRoute == "buy")
             {
                 Buy.Page(commands);
-                currentRoute = "initial";
+                currentRoute = "beranda";
             }
-            else if (currentRoute == "deleteFilm")
-                DeleteFilm.Page();
+            else if (currentRoute == "delfilm")
+            {
+                errMessage = DeleteFilm.Page(commands);
+                currentRoute = "beranda";
+            }
             else if (currentRoute == "help")
                 Help.Page();
             else if (currentRoute == "topup")
             {
                 errMessage = TopUp.Page(commands);
-                currentRoute = "initial";
+                currentRoute = "beranda";
             }
             else if (currentRoute == "view")
                 View.Page(commands);
@@ -63,7 +66,7 @@ namespace App.Terminal
                 errMessage = (
                     currentRoute == "" ? "" : $"{currentRoute} bukan perintah yang valid!"
                 );
-                currentRoute = "initial";
+                currentRoute = "beranda";
             }
 
             return true;
