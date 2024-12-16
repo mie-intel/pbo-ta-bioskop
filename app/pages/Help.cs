@@ -10,7 +10,7 @@ namespace App.Pages
             string? parameters,
             string? type,
             string penjelasan
-        )> commands = new List<(string, string?, string?, string)>
+        )> defaultCommands = new List<(string, string?, string?, string)>
         {
             ("buy", "<idFilm>", "(str)", "Memesan tiket film dengan id <idFilm>"),
             ("help", null, null, "Mendapatkan dokumentasi aplikasi"),
@@ -40,16 +40,19 @@ namespace App.Pages
             Console.WriteLine("Bantuan\n");
             Console.WriteLine($" {"Perintah", -11}{"Params", -11}{"Tipe", -8}Penjelasan");
 
+            List<(string command, string? parameters, string? type, string penjelasan)> commands =
+                new List<(string, string?, string?, string)>();
+
+            // Pilih commands yang akan di print
             if (UserProvider.GetStatus() == "default")
-                foreach (var command in commands)
-                    Console.WriteLine(
-                        $" {command.Item1, -11}{command.Item2 ?? "-", -11}{command.Item3 ?? "-", -8}{command.Item4}"
-                    );
+                commands = defaultCommands;
             else
-                foreach (var command in adminCommands)
-                    Console.WriteLine(
-                        $" {command.Item1, -11}{command.Item2 ?? "-", -11}{command.Item3 ?? "-", -8}{command.Item4}"
-                    );
+                commands = adminCommands;
+
+            foreach (var command in commands)
+                Console.WriteLine(
+                    $" {command.Item1, -11}{command.Item2 ?? "-", -11}{command.Item3 ?? "-", -8}{command.Item4}"
+                );
 
             Console.WriteLine();
             Console.WriteLine("Tekan \'enter\' untuk kembali ke beranda");
