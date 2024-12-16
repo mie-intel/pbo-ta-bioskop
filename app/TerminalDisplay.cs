@@ -9,10 +9,7 @@ namespace App.Terminal
 {
     public static class TerminalDisplay
     {
-        static string[] routes = { "beranda", "view", "buy", "topup", "addfilm", "delfilm" };
-
         static string currentRoute = "beranda";
-
         static string errMessage = "";
 
         // Menampilkan Command Line
