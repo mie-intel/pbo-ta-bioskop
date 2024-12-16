@@ -1,24 +1,37 @@
+using App.Model;
+using App.Utils;
+
 namespace App.Pages
 {
     internal class View
     {
-        public static void Page(List<string> commands)
+        public static string Page(List<string> commands)
         {
             Console.Clear();
-            Console.WriteLine("Sedang melihat id ");
-            Console.WriteLine("++++++++++Detail Film+++++++++");
-            Console.WriteLine("Id\t: <id_film>");
-            Console.WriteLine("Nama\t: <judulFilm>");
-            Console.WriteLine("Tanggal\t: <tanggalFilm>");
-            Console.WriteLine("Rate\t: <rateFilm>");
-            Console.WriteLine("\nDeskripsi");
-            Console.WriteLine(
-                "\tLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            );
-            Console.WriteLine($"Harga\t: <hargaFilm>");
+            if (commands.Count == 1)
+                return "\'view\' memerlukan paramter <idFilm> untuk bekerja! Ketik \'help\' untuk bantuan";
+            else if (commands.Count > 2)
+                return "view memerlukan tepat 1 parameter <idFilm>. Ketik \'help\' untuk bantuan";
 
-            Console.WriteLine();
-            Console.WriteLine("Tekan \'enter\' untuk kembali");
+            FilmModel? film = FilmProvider.GetFilmWithId(commands[1]);
+
+            if (film == null)
+                return "idFilm tidak valid!";
+
+            Console.WriteLine("Detail Film\n");
+            Console.WriteLine($"Judul   : {film.Nama}");
+            Console.WriteLine($"Id      : {film.Id}");
+            Console.WriteLine($"Rating  : {new string('\u2605', film.Rate)}");
+            Console.WriteLine(
+                $"Harga   : {film.Harga.ToString("C", DBUtil.getCustomCurrency("id-ID"))}"
+            );
+
+            Console.WriteLine("\nSinopsis: ");
+            IOUtil.WriteParagraph(film.Deskripsi);
+
+            Console.WriteLine('\n');
+            Console.WriteLine("Tekan \'enter\' untuk kembali ke beranda");
+            return "";
         }
     }
 }

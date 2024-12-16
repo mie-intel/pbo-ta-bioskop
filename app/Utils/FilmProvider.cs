@@ -69,6 +69,14 @@ namespace App.Utils
             return result;
         }
 
+        // Mendapatkan data lengkap sebuah film
+        public static FilmModel? GetFilmWithId(string filmId)
+        {
+            var dbContext = CreateDbContext();
+            dbContext.Database.EnsureCreated();
+            return dbContext.Film.FirstOrDefault(u => u.Id == filmId) ?? null;
+        }
+
         // Function to add new film
         // Admin only
         public static string AddFilm(

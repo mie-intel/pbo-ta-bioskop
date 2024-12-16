@@ -52,7 +52,7 @@ namespace App.Pages
                     );
 
             Console.WriteLine();
-            Console.WriteLine("Tekan \'enter\' untuk kembali");
+            Console.WriteLine("Tekan \'enter\' untuk kembali ke beranda");
             return "";
         }
     }
