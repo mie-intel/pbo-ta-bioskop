@@ -60,12 +60,18 @@ namespace App.Terminal
                 errMessage = TopUp.Page(commands);
                 currentRoute = "beranda";
             }
+            else if (currentRoute == "ticket")
+                Tickets.Page();
             else if (currentRoute == "view")
-                View.Page(commands);
+            {
+                errMessage = View.Page(commands);
+                if (errMessage != "")
+                    currentRoute = "beranda";
+            }
             else
             {
                 errMessage = (
-                    currentRoute == "" ? "" : $"{currentRoute} bukan perintah yang valid!"
+                    currentRoute == "" ? "" : $"\'{currentRoute}\' bukan perintah yang valid!"
                 );
                 currentRoute = "beranda";
             }

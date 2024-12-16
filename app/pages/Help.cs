@@ -14,11 +14,12 @@ namespace App.Pages
         {
             ("buy", "<idFilm>", "(str)", "Memesan tiket film dengan id <idFilm>"),
             ("help", null, null, "Mendapatkan dokumentasi aplikasi"),
+            ("ticket", null, null, "Melihat semua tiket yang telah dipesan"),
             (
                 "topup",
                 "<uang>",
                 "(int)",
-                "menambahkan saldo sebanyak <uang> ke dalam akun pengguna"
+                "Menambahkan saldo sebanyak <uang> ke dalam akun pengguna"
             ),
             ("view", "<idFilm>", "(str)", "Melihat detail dari film dengan id <idFilm>"),
         };

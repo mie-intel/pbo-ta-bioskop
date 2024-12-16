@@ -102,6 +102,42 @@ namespace App.Utils
             return SeatList;
         }
 
+        // Mendapatkan semua tiket yang dipesan
+        public static List<List<string>>? ViewTicket()
+        {
+            // get current user information
+            var currentUser = UserProvider.GetCurrentUser();
+            if (currentUser == null)
+                return null;
+
+            var dbContext = CreateDbContext();
+            dbContext.Database.EnsureCreated();
+            List<FilmModel>? films = dbContext.Film.ToList();
+
+            if (films == null)
+                return null;
+            List<List<string>> tickets = [];
+            foreach (var film in films)
+            {
+                // filter kursi
+                string[] seat = film.Seat.Split(',');
+                List<string> kursi = [];
+                for (int i = 0; i < seat.Length; ++i)
+                {
+                    string code = "A" + (i + 1).ToString("D2");
+                    if (seat[i] == currentUser.Id)
+                        kursi.Add(code);
+                }
+                if (kursi.Count == 0)
+                    continue;
+
+                List<string> ticket = [film.Nama, film.Tanggal, string.Join(", ", kursi)];
+                tickets.Add(ticket);
+            }
+
+            return tickets;
+        }
+
         // Menegeluarkan  list semua film yang tersedia
         public static List<FilmModel> GetAvailableFilm()
         {
