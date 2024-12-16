@@ -40,13 +40,9 @@ namespace App.Pages
             Console.WriteLine("Bantuan\n");
             Console.WriteLine($" {"Perintah", -11}{"Params", -11}{"Tipe", -8}Penjelasan");
 
-            List<(string command, string? parameters, string? type, string penjelasan)> commands;
-
-            // Pilih commands yang akan di print
-            if (UserProvider.GetStatus() == "default")
-                commands = defaultCommands;
-            else
-                commands = adminCommands;
+            List<(string command, string? parameters, string? type, string penjelasan)> commands = (
+                UserProvider.GetStatus() == "default" ? defaultCommands : adminCommands
+            );
 
             foreach (var command in commands)
                 Console.WriteLine(
