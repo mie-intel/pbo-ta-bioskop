@@ -21,22 +21,26 @@ namespace App.Utils
         // Update amount of money
         private static void SyncBalance()
         {
-            Console.WriteLine("Start update!");
             var dbContext = CreateDbContext();
             dbContext.Database.EnsureCreated();
             var selectedUser = dbContext.User.FirstOrDefault(u =>
                 u.Username == _username && u.Password == _password
             );
 
-            if (selectedUser != null)
-            {
-                selectedUser.Balance = _balance;
-                dbContext.SaveChanges();
-            }
-            else
-            {
-                Console.WriteLine("Kosong");
-            }
+            if (selectedUser == null)
+                return;
+
+            selectedUser.Balance = _balance;
+            dbContext.SaveChanges();
+        }
+
+        public static UserModel? GetCurrentUser()
+        {
+            var dbContext = CreateDbContext();
+            dbContext.Database.EnsureCreated();
+            return dbContext.User.FirstOrDefault(u =>
+                u.Username == _username && u.Password == _password
+            );
         }
 
         // Get current username

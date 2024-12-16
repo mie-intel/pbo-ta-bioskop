@@ -30,6 +30,7 @@ namespace App.Pages
             IOUtil.WriteParagraph(film.Deskripsi);
 
             Console.WriteLine('\n');
+            Console.WriteLine("Ketik \'buy\' <idFilm> untuk memesan tiket");
             Console.WriteLine("Tekan \'enter\' untuk kembali ke beranda");
             return "";
         }

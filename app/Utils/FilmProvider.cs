@@ -30,13 +30,50 @@ namespace App.Utils
         }
 
         // Book Film
-        public static string BookFilm(string filmId, string seat)
+        public static string BookFilm(string filmId, string seatCode, string password)
         {
-            return "NULL";
+            var dbContext = CreateDbContext();
+            dbContext.Database.EnsureCreated();
+
+            // get current film information
+            var selectedFilm = dbContext.Film.FirstOrDefault(u => u.Id == filmId);
+            if (selectedFilm == null)
+                return "not-found";
+
+            // get current user information
+            var currentUser = UserProvider.GetCurrentUser();
+            if (currentUser == null)
+                return "user-error";
+
+            // Proses memesan
+            string[] seatList = selectedFilm.Seat.Split(',');
+            bool matched = false;
+            for (int i = 0; i < seatList.Length; ++i)
+            {
+                string code = "A" + (i + 1).ToString("D2");
+                if (code != seatCode)
+                    continue;
+                if (seatList[i] != "")
+                    return "already-booked";
+                matched = true;
+                seatList[i] = currentUser.Id;
+            }
+
+            if (!matched)
+                return "error";
+
+            // Simpan hasil
+            selectedFilm.Seat = string.Join(",", seatList);
+            dbContext.SaveChanges();
+
+            // Melakukan pembelian
+            UserProvider.UseMoney(selectedFilm.Harga);
+
+            return "success";
         }
 
         // Parsing Seat Code from Database
-        public static List<(string, string)>? ParseSeat(string filmId)
+        public static List<List<string>>? GetAllSeat(string filmId)
         {
             // The format will be A1, A2, A3, ...
             var dbContext = CreateDbContext();
@@ -48,15 +85,20 @@ namespace App.Utils
                 return null;
 
             string[] SeatDbList = selectedFilm.Seat.Split(',');
-            List<(string seatCode, string userCode)> SeatList =
-                new List<(string seatCode, string userCode)>();
+            List<List<string>> SeatList = [];
 
             for (int i = 0; i < SeatDbList.Length; i += 1)
             {
                 string code = "A" + (i + 1).ToString("D2");
-                string status = SeatDbList[i] == "" ? "." : "BOOKED";
-                SeatList.Add((code, status));
+                string status = SeatDbList[i] == "" ? "TERSEDIA" : ".";
+                SeatList.Add([code, status]);
             }
+            /*
+                Format List
+                [code, status],
+                [code, status],
+                ....
+            */
             return SeatList;
         }
 

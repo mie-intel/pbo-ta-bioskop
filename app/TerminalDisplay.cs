@@ -24,6 +24,7 @@ namespace App.Terminal
 
             if (errMessage != "")
                 Console.WriteLine(errMessage);
+            errMessage = "";
 
             // Dapetin command line
             string inp = IOUtil.GetLine("Perintah $ ");
@@ -39,12 +40,12 @@ namespace App.Terminal
             // cek command
             if (currentRoute == "addfilm")
             {
-                AddFilm.Page();
+                errMessage = AddFilm.Page();
                 currentRoute = "beranda";
             }
             else if (currentRoute == "buy")
             {
-                Buy.Page(commands);
+                errMessage = Buy.Page(commands);
                 currentRoute = "beranda";
             }
             else if (currentRoute == "delfilm")
