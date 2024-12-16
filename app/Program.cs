@@ -1,4 +1,4 @@
-﻿using App.Terminal;
+using App.Terminal;
 using App.Utils;
 
 namespace App
