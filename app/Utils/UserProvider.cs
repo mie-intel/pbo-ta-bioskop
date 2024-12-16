@@ -11,24 +11,32 @@ namespace App.Utils
         private static int _balance = 0;
 
         // Creates a database context
-        private static UserDbContext CreateDbContext()
+        private static AppDbContext CreateDbContext()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<UserDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseSqlite(DBUtil.GetConnectionSQLite("Users.db"));
-            return new UserDbContext(optionsBuilder.Options);
+            return new AppDbContext(optionsBuilder.Options);
         }
 
         // Update amount of money
         private static void SyncBalance()
         {
+            Console.WriteLine("Start update!");
             var dbContext = CreateDbContext();
+            dbContext.Database.EnsureCreated();
             var selectedUser = dbContext.User.FirstOrDefault(u =>
                 u.Username == _username && u.Password == _password
             );
-            if (selectedUser != null)
-                selectedUser.Balance = _balance;
 
-            dbContext.SaveChanges();
+            if (selectedUser != null)
+            {
+                selectedUser.Balance = _balance;
+                dbContext.SaveChanges();
+            }
+            else
+            {
+                Console.WriteLine("Kosong");
+            }
         }
 
         // Get current username
@@ -84,6 +92,7 @@ namespace App.Utils
                 _username = user.Username;
                 _password = user.Password;
                 _status = user.Status;
+                _balance = user.Balance;
                 return "success";
             }
             return "invalid";
@@ -126,16 +135,5 @@ namespace App.Utils
             _password = null;
             _status = null;
         }
-    }
-
-    public class UserDbContext : DbContext
-    {
-        public UserDbContext(DbContextOptions<UserDbContext> options)
-            : base(options)
-        {
-            User = Set<UserModel>();
-        }
-
-        public DbSet<UserModel> User { get; set; }
     }
 }

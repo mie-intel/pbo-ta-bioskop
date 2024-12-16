@@ -37,22 +37,33 @@ namespace App.Terminal
                 return false;
 
             // cek command
-            if (currentRoute == "view")
+            if (currentRoute == "addFilm")
             {
-                View.Page(commands);
+                AddFilm.Page();
+                currentRoute = "initial";
             }
             else if (currentRoute == "buy")
+            {
                 Buy.Page(commands);
-            else if (currentRoute == "topup")
-                errMessage = TopUp.Page();
-            else if (currentRoute == "addFilm")
-                addFilm.Page();
+                currentRoute = "initial";
+            }
             else if (currentRoute == "deleteFilm")
-                deleteFilm.Page();
+                DeleteFilm.Page();
+            else if (currentRoute == "help")
+                Help.Page();
+            else if (currentRoute == "topup")
+            {
+                errMessage = TopUp.Page(commands);
+                currentRoute = "initial";
+            }
+            else if (currentRoute == "view")
+                View.Page(commands);
             else
             {
+                errMessage = (
+                    currentRoute == "" ? "" : $"{currentRoute} bukan perintah yang valid!"
+                );
                 currentRoute = "initial";
-                errMessage = $"{currentRoute} bukan perintah yang valid!";
             }
 
             return true;

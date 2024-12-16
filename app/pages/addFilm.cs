@@ -3,7 +3,7 @@ using App.Utils;
 
 namespace App.Pages
 {
-    internal class addFilm
+    internal class AddFilm
     {
         public static string Page()
         {

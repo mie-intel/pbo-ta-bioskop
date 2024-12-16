@@ -6,7 +6,6 @@ namespace App.Pages
     {
         public static string Page(List<string> commands)
         {
-            Console.Clear();
             if (commands.Count == 1)
                 return "\'topup\' memerlukan 1 parameter <nominalUang>";
             else if (commands.Count != 2)

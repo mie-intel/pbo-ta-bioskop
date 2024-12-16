@@ -1,4 +1,5 @@
 ﻿using App.Terminal;
+using App.Utils;
 
 namespace App
 {
@@ -14,7 +15,8 @@ namespace App
                 if (!TerminalDisplay.Display())
                     break;
 
-            Console.WriteLine("\nSampai Jumpa!");
+            UserProvider.LogOut();
+            Console.WriteLine("\nBerhasil logout. Sampai Jumpa!");
         }
     }
 }

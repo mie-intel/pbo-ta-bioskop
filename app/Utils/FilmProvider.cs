@@ -7,11 +7,11 @@ namespace App.Utils
     internal class FilmProvider
     {
         // Creates a database context
-        private static FilmDbContext CreateDbContext()
+        private static AppDbContext CreateDbContext()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<FilmDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseSqlite(DBUtil.GetConnectionSQLite("Films.db"));
-            return new FilmDbContext(optionsBuilder.Options);
+            return new AppDbContext(optionsBuilder.Options);
         }
 
         // Get Film ID
@@ -126,16 +126,5 @@ namespace App.Utils
                 return "not-found";
             return "success";
         }
-    }
-
-    public class FilmDbContext : DbContext
-    {
-        public FilmDbContext(DbContextOptions<FilmDbContext> options)
-            : base(options)
-        {
-            Film = Set<FilmModel>();
-        }
-
-        public DbSet<FilmModel> Film { get; set; }
     }
 }

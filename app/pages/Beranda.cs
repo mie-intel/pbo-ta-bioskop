@@ -24,7 +24,7 @@ namespace App.Pages
             foreach (var film in filmList)
                 Console.WriteLine($" {++it, -5}{film.Id, -10}{film.Tanggal, -14}{film.Nama}");
 
-            Console.WriteLine("\nKetik 'view <idFilm>' melihat detail Film");
+            Console.WriteLine("\nKetik \'help\' untuk mendapatkan bantuan");
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace App.Pages
 {
-    internal class deleteFilm
+    internal class DeleteFilm
     {
         public static void Page()
         {
