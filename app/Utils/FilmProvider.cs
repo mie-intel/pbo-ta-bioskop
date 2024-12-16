@@ -127,14 +127,12 @@ namespace App.Utils
 
             var selectedFilm = dbContext.Film.FirstOrDefault(u => u.Id == filmId);
 
-            // remove film if it exist
-            if (selectedFilm != null)
-            {
-                dbContext.Film.Remove(selectedFilm);
-                dbContext.SaveChanges();
-            }
-            else
+            // if not found, continue
+            if (selectedFilm == null)
                 return "not-found";
+
+            dbContext.Film.Remove(selectedFilm);
+            dbContext.SaveChanges();
             return "success";
         }
     }
