@@ -58,13 +58,13 @@ https://www.canva.com/design/DAGY-KM-s-Q/W3tVbCS6WpdxTZ4FwS2UBg/edit?utm_content
 
 ### Perintah yang tersedia
 
-- #### VIEW
+- #### ADDFILM (hanya admin)
 
   ```
-  view [idFilm]
+  addfilm
   ```
 
-  Untuk melihat detail film dengan id <i>`idFilm`</i>
+  Untuk menambahkan film baru
 
 - #### BUY
 
@@ -74,7 +74,42 @@ https://www.canva.com/design/DAGY-KM-s-Q/W3tVbCS6WpdxTZ4FwS2UBg/edit?utm_content
 
   Untuk membeli film dengan id `[idFilm]`
 
-- ### Melihat seluruh tiket yang telah dipesan
-  Untuk melihat seluruh tiket yang telah dipesan, masukan perintah `ticket`
-- ### Menambahkan film baru (hanya admin)
-- ### Menghapus sebuah film (hanya admin)
+- #### DELFILM (hanya admin)
+
+  ```
+  delfilm [idFilm]
+  ```
+
+  Untuk menghapus film dengan id `[idFilm]`
+
+- #### HELP
+
+  ```
+  help
+  ```
+
+  Untuk mendapatakan bantuan terkait perintah yang tersedia
+
+- #### TICKET
+
+  ```
+  ticket
+  ```
+
+  Untuk melihat seluruh tiket yang telah dipesan
+
+- #### TOPUP
+
+  ```
+  topup [uang]
+  ```
+
+  Untuk menambahkan uang ke dalam akun sebanyak `[uang]` rupiah. `[uang]` harus berupa bilangan bulat tanpa titik ataupun koma pemisah.
+
+- #### VIEW
+
+  ```
+  view [idFilm]
+  ```
+
+  Untuk melihat detail film dengan id `[idFilm]`
