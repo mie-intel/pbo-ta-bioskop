@@ -5,6 +5,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>PBO_Bioskop_514719_512404_512856_IOUtils</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

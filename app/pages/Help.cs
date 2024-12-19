@@ -13,6 +13,7 @@ namespace App.Pages
         )> defaultCommands = new List<(string, string?, string?, string)>
         {
             ("buy", "[idFilm]", "(str)", "Memesan tiket film dengan id [idFilm]"),
+            ("exit", null, null, "Keluar dari aplikasi"),
             ("help", null, null, "Mendapatkan dokumentasi aplikasi"),
             ("ticket", null, null, "Melihat semua tiket yang telah dipesan"),
             (
@@ -33,6 +34,7 @@ namespace App.Pages
         {
             ("addfilm", null, null, "Menambahkan film baru"),
             ("delfilm", "[idFilm]", "(str)", "Menghapus film dengan id [idFilm]"),
+            ("exit", null, null, "Keluar dari aplikasi"),
         };
 
         public static string Page()
