@@ -12,16 +12,16 @@ namespace App.Pages
             string penjelasan
         )> defaultCommands = new List<(string, string?, string?, string)>
         {
-            ("buy", "<idFilm>", "(str)", "Memesan tiket film dengan id <idFilm>"),
+            ("buy", "[idFilm]", "(str)", "Memesan tiket film dengan id [idFilm]"),
             ("help", null, null, "Mendapatkan dokumentasi aplikasi"),
             ("ticket", null, null, "Melihat semua tiket yang telah dipesan"),
             (
                 "topup",
-                "<uang>",
+                "[uang]",
                 "(int)",
                 "Menambahkan saldo sebanyak <uang> ke dalam akun pengguna"
             ),
-            ("view", "<idFilm>", "(str)", "Melihat detail dari film dengan id <idFilm>"),
+            ("view", "<idFilm>", "(str)", "Melihat detail dari film dengan id [idFilm]"),
         };
 
         private static List<(
@@ -32,7 +32,7 @@ namespace App.Pages
         )> adminCommands = new List<(string, string?, string?, string)>
         {
             ("addfilm", null, null, "Menambahkan film baru"),
-            ("delfilm", "<idFilm>", "(str)", "Menghapus film dengan id <idFilm>"),
+            ("delfilm", "[idFilm]", "(str)", "Menghapus film dengan id [idFilm]"),
         };
 
         public static string Page()

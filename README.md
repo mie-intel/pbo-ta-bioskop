@@ -58,12 +58,22 @@ https://www.canva.com/design/DAGY-KM-s-Q/W3tVbCS6WpdxTZ4FwS2UBg/edit?utm_content
 
 ### Perintah yang tersedia
 
-- `view <idFilm>`
+- #### VIEW
 
-  Untuk melihat detail film dengan id `<idFilm>`
+  ```
+  view [idFilm]
+  ```
 
-- ### Memesan tiket film
-  Untuk membeli sebuah tiket film, masukan perintah `buy <idFilm>` dengan `<idFilm>` adalah id dari film yang ingin dilihat. `<idFIlm>` dapat dilihat pada beranda.
+  Untuk melihat detail film dengan id `[idFilm]`
+
+- #### BUY
+
+  ```
+  buy [idFilm]
+  ```
+
+  Untuk membeli film dengan id `[idFilm]`
+
 - ### Melihat seluruh tiket yang telah dipesan
   Untuk melihat seluruh tiket yang telah dipesan, masukan perintah `ticket`
 - ### Menambahkan film baru (hanya admin)
