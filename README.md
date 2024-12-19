@@ -101,6 +101,14 @@ app/
 
   Untuk menghapus film dengan id `[idFilm]`
 
+- #### EXIT
+
+  ```
+  exit
+  ```
+
+  Untuk keluar dari aplikasi
+
 - #### HELP
 
   ```

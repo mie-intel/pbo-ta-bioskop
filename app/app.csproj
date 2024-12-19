@@ -5,7 +5,6 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PackageId>PBO_Bioskop_514719_512404_512856_IOUtils</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="REV_PBO_BIOSKOP_IOUtils_3_514719_512404_512856" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
