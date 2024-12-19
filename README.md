@@ -18,10 +18,20 @@ https://www.canva.com/design/DAGY-KM-s-Q/W3tVbCS6WpdxTZ4FwS2UBg/edit?utm_content
 
 ### How to Run
 
-1. Pertama, clone terlebih dahulu repositori ini dengan
-   ```
-   git clone git@github.com:mie-intel/pbo-ta-bioskop.git
-   ```
+1. Pertama, clone terlebih dahulu repositori
+
+   - Dengan HTTPS
+
+     ```
+     git clone https://github.com/mie-intel/pbo-ta-bioskop.git
+     ```
+
+   - Dengan SSH
+
+     ```
+     git clone git@github.com:mie-intel/pbo-ta-bioskop.git
+     ```
+
 2. Pergi ke folder app dengan perintah
    ```
     cd app/
@@ -46,8 +56,13 @@ https://www.canva.com/design/DAGY-KM-s-Q/W3tVbCS6WpdxTZ4FwS2UBg/edit?utm_content
 4. Akun biasa digunakan apabila ingin berinteraksi dengan aplikasi seperti biasa
 5. Setelah login, anda akan masuk ke tampilan utama pada aplikasi. Anda akan dapat melihat seluruh film yang tersedia di dalam aplikasi
 
-### Fitur (biasa)
+### Perintah yang tersedia
 
-- ### Melilhat detail film
+- ### `view <idFilm>`
+  Untuk melihat detail film dengan id `<idFilm>`
 - ### Memesan tiket film
-- ### Memesan
+  Untuk membeli sebuah tiket film, masukan perintah `buy <idFilm>` dengan `<idFilm>` adalah id dari film yang ingin dilihat. `<idFIlm>` dapat dilihat pada beranda.
+- ### Melihat seluruh tiket yang telah dipesan
+  Untuk melihat seluruh tiket yang telah dipesan, masukan perintah `ticket`
+- ### Menambahkan film baru (hanya admin)
+- ### Menghapus sebuah film (hanya admin)
