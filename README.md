@@ -41,6 +41,25 @@ https://www.canva.com/design/DAGY-KM-s-Q/W3tVbCS6WpdxTZ4FwS2UBg/edit?utm_content
    dotnet run
    ```
 
+### Struktur Kode
+
+```
+app/
+  db/
+  model/
+  pages/
+  utils/
+  Program.cs
+  TerminalDisplay.cs
+```
+
+- `db/` berupa folder berisi seluruh database yang ada pada aplikasi
+- `model/` berupa folder berisi model dari database. Terdapat dua model yang digunakan yakni model `Users` dan `Films`
+- `pages/` berupa folder berisi implementasi dari setiap halaman yang ada pada aplikasi
+- `utils/` berupa folder berisi fungsi - fungsi pembantu yang memudahkan proses pengembangan aplikasi
+- `Program.cs` merupakan kode utama yang dijalankan oleh program
+- `TerminalDisplay.cs` merupakan kode yang mengatur halaman apa saja yang akan ditampilkan oleh program saat ini
+
 ### Akun Pengguna
 
 1. Saat pertama kali dijalankan, anda akan diminta untuk login / mendaftarkan terlebih dahulu akun anda. Silakan pilih yang paling sesuai
