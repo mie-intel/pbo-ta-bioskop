@@ -167,8 +167,8 @@ namespace App.Utils
         )
         {
             // Admin only
-            // if (UserProvider.GetStatus() != "admin")
-            //     return "not-allowed";
+            if (UserProvider.GetStatus() != "admin")
+                return "not-allowed";
 
             var dbContext = CreateDbContext();
             dbContext.Database.EnsureCreated();
@@ -197,8 +197,8 @@ namespace App.Utils
         public static string DeleteFilm(string filmId)
         {
             // Admin only
-            // if (UserProvider.GetStatus() != "admin")
-            //     return "not-allowed";
+            if (UserProvider.GetStatus() != "admin")
+                return "not-allowed";
 
             var dbContext = CreateDbContext();
             dbContext.Database.EnsureCreated();

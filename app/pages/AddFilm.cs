@@ -7,6 +7,9 @@ namespace App.Pages
     {
         public static string Page()
         {
+            if (!(UserProvider.GetStatus() ?? "").Equals("admin"))
+                return "Anda tidak diizinkan mengakses perintah ini";
+
             Console.Clear();
             Console.WriteLine("Tambahkan film baru!\n");
             string nama = IOUtil.GetLine($" {"Judul", 10}: ");

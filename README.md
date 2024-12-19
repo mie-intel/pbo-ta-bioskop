@@ -48,4 +48,6 @@ https://www.canva.com/design/DAGY-KM-s-Q/W3tVbCS6WpdxTZ4FwS2UBg/edit?utm_content
 
 ### Fitur (biasa)
 
-- ### Melilhat
+- ### Melilhat detail film
+- ### Memesan tiket film
+- ### Memesan

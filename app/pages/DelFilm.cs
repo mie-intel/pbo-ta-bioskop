@@ -17,7 +17,7 @@ namespace App.Pages
             string password = IOUtil.GetLine("Masukkan password untuk konfirmasi: ");
             if (UserProvider.VerifyPassword(password).Equals("success")) //check pass sama ga sama di db
             {
-                if (FilmProvider.DeleteFilm(commands[1]) == "success")
+                if (FilmProvider.DeleteFilm(commands[1]).Equals("success"))
                     return "Berhasil menghapus film!";
                 else
                     return $"Film dengan id {commands[1]} tidak ditemukan";
